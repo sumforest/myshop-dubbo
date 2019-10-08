@@ -1,0 +1,6 @@
+stages:
+  - build
+test:
+  stage: build
+  script:
+    - /usr/local/maven/apache-maven-3.5.3/bin/mvn install

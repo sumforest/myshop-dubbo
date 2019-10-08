@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sen.myshop.service.search.provider.mapper.TbSearchMapper">
+  <resultMap id="BaseResultMap" type="com.sen.myshop.service.search.dto.TbSearchDto">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="tb_item_title" jdbcType="VARCHAR" property="TbItemTile" />
+    <result column="tb_item_sell_point" jdbcType="VARCHAR" property="TbItemSellPoint" />
+    <result column="tb_item_cname" jdbcType="VARCHAR" property="TbItemCname" />
+    <result column="tb_item_cid" jdbcType="BIGINT" property="TbItemCid" />
+    <result column="tb_item_desc" jdbcType="VARCHAR" property="TbItemDesc" />
+  </resultMap>
+  <select id="listTbSearchDto" resultMap="BaseResultMap">
+    SELECT
+    a.id,
+    a.title AS tb_item_title,
+    a.sell_point AS tb_item_sell_point,
+    b.`name` AS tb_item_cname,
+    b.`id` AS tb_item_cid,
+    c.`item_desc` AS tb_item_desc
+    FROM tb_item a
+    LEFT JOIN tb_item_cat b
+    ON a.cid = b.`id`
+    LEFT JOIN tb_item_desc c
+    ON a.id = c.`item_id`
+  </select>
+</mapper>
